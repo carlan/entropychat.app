@@ -35,6 +35,8 @@
     "port": "MONGO_PORT",
     "db_name": "MONGO_DB_NAME",
     "root_user": "MONGO_ROOT_USER",
-    "root_password": "MONGO_ROOT_PASSWORD"
+    "root_password": "MONGO_ROOT_PASSWORD",
+    "reconnect_interval": "MONGO_RECONNECT_INTERVAL",
+    "reconnect_tries": "MONGO_RECONNECT_TRIES"
   }
 }

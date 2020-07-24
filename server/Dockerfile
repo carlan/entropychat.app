@@ -10,4 +10,4 @@ RUN npm install
 
 COPY . .
 
-CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js", "--no-autorestart" ]

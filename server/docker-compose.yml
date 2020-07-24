@@ -10,9 +10,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    healthcheck:
+      test: bash -c "if mongo test --quiet --eval 'quit(db.runCommand(\"ping\").ok?0:2)'; then exit 0; fi; exit 1;"
 
   api:
-    # TODO: wait for mongodb to be available...
     image: entropychat.api
     build: .
     restart: on-failure
@@ -34,6 +35,8 @@ services:
       MONGO_DB_NAME: ${MONGO_DB_NAME}
       MONGO_ROOT_USER: ${MONGO_ROOT_USER}
       MONGO_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    healthcheck:
+      test: nc -z localhost ${PORT} || exit 1
 
 volumes:
   npm_cache:
